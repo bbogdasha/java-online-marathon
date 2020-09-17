@@ -3,7 +3,7 @@
 Please, make refactoring of the code:
 
 ```java
-  class Person {
+    class Person {
       String childIDNumber;    
   }
 
