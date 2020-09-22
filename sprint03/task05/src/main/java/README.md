@@ -18,6 +18,6 @@ Override discount() method for each constant and return discount value that calc
 |Client status | Formula|
 | :---:        |   :---:    |
 |NEW           |Default value|
-|SILVER        |(100 - <count of months> * 0,25) / 100|
-|GOLD          |(100 - <count of months> * 0,3) / 100|
-|PLATINUM      |(100 - <count of months> * 0,35) / 100|
+|SILVER        |(100 - count of months * 0,25) / 100|
+|GOLD          |(100 - count of months * 0,3) / 100|
+|PLATINUM      |(100 - count of months * 0,35) / 100|
