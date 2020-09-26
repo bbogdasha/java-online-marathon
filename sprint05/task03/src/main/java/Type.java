@@ -1,0 +1,3 @@
+enum Type {
+    RARE, ORDINARY;
+}
