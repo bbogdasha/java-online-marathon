@@ -17,3 +17,21 @@ For example, for a given map:
 you should get:
 
 ["Andriy", "Anna", "Ira", "Ivan", "Petro ", "Stepan"]
+
+---
+
+### Better solution
+
+```java
+    public Stream<String> nameList(Map<String, Stream<String>> map) {
+        if (map == null) throw new NullPointerException("Invalid parameters");
+        return map.values().stream()
+                .flatMap(s -> s)
+                .filter(s -> (s != null) && (!s.isEmpty()))
+                .map(s -> s.trim().replace(" ", "").toLowerCase())
+                .filter(s -> !s.isEmpty())
+                .map(s -> s.replaceFirst(String.valueOf(s.charAt(0)), String.valueOf(s.charAt(0)).toUpperCase()))
+                .distinct()
+                .sorted();
+    }
+```
