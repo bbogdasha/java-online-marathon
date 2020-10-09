@@ -9,3 +9,24 @@ For example, the sequence of 7-bit bytes:
 should be represented as text fragment:
 
 *Hello!*
+
+---
+
+### Better solution
+
+```java
+    public static String readFile(String filename) {
+        StringBuilder sb = new StringBuilder();
+        char[] symbols;
+        try (FileReader fileReader = new FileReader(filename)){
+            symbols = new char[7];
+            int offset = 0;
+            while (fileReader.read(symbols, offset, 7) != -1) {
+                sb.append((char) Integer.parseInt(String.valueOf(symbols), 2));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
+    }
+```
