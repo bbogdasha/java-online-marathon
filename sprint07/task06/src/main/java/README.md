@@ -15,3 +15,23 @@ For example, for a given:
 you should get:
 
 * {"050"=["1234567", "2345678"], "067"=["2143657"], "093"=["1122334", "9182736", "9876543"], "044"=["4356218"], "loc"=["2241928", "7217345"], "err"=["12345"]}
+
+---
+
+### Better solution
+
+```java
+    public Map<String, Stream<String>> phoneNumber(List<Stream<String>> list) {
+        return list.stream()
+                .flatMap(s -> s)
+                .distinct()
+                .filter(s -> (s != null) && (!s.isEmpty()))
+                .map(s -> s.replaceAll("[-() ]", ""))
+                .map(s -> s.length() == 7 ? "loc" .concat(s) : s.length() < 7 ? "err" .concat(s) : s)
+                .collect(Collectors.groupingBy(s -> s.substring(0, 3)))
+                .entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().stream().map(s -> s.substring(3))
+                .sorted()));
+
+    }
+```
