@@ -11,3 +11,23 @@ should be represented in the file as a sequence of 7-bit bytes without spaces be
 *100010111110001100001110110111100001*
 
 If less than 7 bits are required to represent the character then add to binary sequence leading zeros '0'.
+
+---
+
+### Better solution
+
+```java
+    public static void writeFile(String filename, String text) {
+        byte[] bytes = text.getBytes();
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+            sb.append(String.format("%7s", Integer.toBinaryString(b)));
+        }
+        String str = sb.toString().replace(" ", "0");
+        try (FileOutputStream writer = new FileOutputStream(filename)) {
+            writer.write(str.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+```
