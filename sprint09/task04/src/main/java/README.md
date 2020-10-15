@@ -59,28 +59,28 @@ The goal of each thread is to update m and n fields and not switch between threa
 
 You need to get an output like this:
 
-  Thread1 n = 0
-  Thread1 n = 1
-  Thread1 n = 2
-  Thread1 n = 3
-  Thread1 n = 4
-  Thread2 m = 0
-  Thread2 m = 1
-  Thread2 m = 2
-  Thread2 m = 3
-  Thread2 m = 4
-  Thread2 n = 5
-  Thread2 n = 6
-  Thread2 n = 7
-  Thread2 n = 8
-  Thread2 n = 9
-  Thread2 success!
-  Thread1 m = 5
-  Thread1 m = 6
-  Thread1 m = 7
-  Thread1 m = 8
-  Thread1 m = 9
-  Thread1 success!
+  Thread1 n = 0 <br />
+  Thread1 n = 1 <br />
+  Thread1 n = 2 <br />
+  Thread1 n = 3 <br />
+  Thread1 n = 4 <br />
+  Thread2 m = 0 <br />
+  Thread2 m = 1 <br />
+  Thread2 m = 2 <br />
+  Thread2 m = 3 <br />
+  Thread2 m = 4 <br />
+  Thread2 n = 5 <br />
+  Thread2 n = 6 <br />
+  Thread2 n = 7 <br />
+  Thread2 n = 8 <br />
+  Thread2 n = 9 <br />
+  Thread2 success! <br />
+  Thread1 m = 5 <br />
+  Thread1 m = 6 <br />
+  Thread1 m = 7 <br />
+  Thread1 m = 8 <br />
+  Thread1 m = 9 <br />
+  Thread1 success! <br />
 
 
 Please, don't change actions that change variables or print output within run() methods. Use only thread synchronization assets.
