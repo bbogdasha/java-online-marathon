@@ -35,12 +35,19 @@ public class threadExample {
 
 You need to implement the methods of the Interactor class so that output will look like this:
 
+
   *Serving thread running*
+  
   *Serving thread initializes the key*
+  
   *key = -7*
+  
   *Consuming thread received the key. key = -7*
+  
   *Consuming thread changed the key. key = 33*
+  
   *Serving thread resumed*
+  
   
 The serve(...) method should initialize the x field with applied its first parameter to the second one and print the messages only about its own actions.
 
