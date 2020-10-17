@@ -23,7 +23,7 @@
                 <td><input type="text" id="title" name="title" value="<%=task.getTitle()%>"></td>
             </tr>
             <tr>
-                <td><label for="priority">Name:</label>Priority: </td>
+                <td><label for="priority">Priority:</label></td>
                 <td>
                     <select id="priority" name="priority" value="<%=task.getPriority()%>">
                         <option value="LOW">Low</option>

@@ -20,7 +20,11 @@ public class DeleteTaskServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        taskRepository.delete(Integer.parseInt(request.getParameter("id")));
+        int id = Integer.parseInt(request.getParameter("id"));
+        taskRepository.delete(id);
+        for (int i = id; i < taskRepository.all().size() + 1; i++) {
+            taskRepository.read(i + 1).setId(i);
+        }
         response.sendRedirect("/tasks-list");
     }
 }
