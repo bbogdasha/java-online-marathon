@@ -12,14 +12,19 @@ public class Main {
 
         Employee[] employees = {emp1, emp2};
 
-        String employeesInfo = "";
 
+        //RIGHT SOLUTION
+        StringBuilder sb = new StringBuilder();
         for (Employee employee : employees) {
-            employeesInfo += "{fullName: \"" + employee.fullName + "\", " + "salary: " + employee.salary + "}, ";
+            sb.append("{fullName: \"")
+                    .append(employee.fullName)
+                    .append("\", salary: ")
+                    .append(employee.salary)
+                    .append("}, ");
         }
 
-        employeesInfo = employeesInfo.substring(0, employeesInfo.length() - 2);
-        employeesInfo = "[" + employeesInfo + "]";
+        sb.delete(sb.length() - 2, sb.length());
+        String employeesInfo = "[" + sb.toString() + "]";
 
         System.out.println(employeesInfo);
     }
