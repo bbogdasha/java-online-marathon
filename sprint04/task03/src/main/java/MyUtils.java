@@ -9,5 +9,8 @@ public class MyUtils {
         Set<String> listToSet = new HashSet<>(map.values());
         Set<String> mapToSet = new HashSet<>(list);
         return listToSet.equals(mapToSet);
+
+        //Second solution
+        //return map.values().containsAll(list) && list.containsAll(map.values());
     }
 }
