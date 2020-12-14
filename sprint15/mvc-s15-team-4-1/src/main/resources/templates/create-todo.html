@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New ToDo List</title>
+    <link rel="stylesheet" href="/general.css">
+</head>
+<body>
+    <div th:insert="~{header :: header}" style="display: flex; padding: 0 20px; border-bottom: solid 1px gray;"></div>
+    <h1>Create New ToDo List</h1>
+    <form th:action="@{/todos/create/users/{owner_id}(owner_id=${owner_id})}" th:object="${todo}" method="post">
+        <table>
+            <tr>
+                <td><p>Title:</p></td>
+                <td><input type="text" name="title" autocomplete="off"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Create"></td>
+                <td><input type="reset" value="Clear"></td>
+            </tr>
+        </table>
+    </form>
+    <a th:href="@{/todos/all/users/{user_id}(user_id=${owner_id})}" class="button">Go to ToDo list</a>
+</body>
+</html>

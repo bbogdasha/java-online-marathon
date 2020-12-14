@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All ToDo lists of User</title>
+    <link rel="stylesheet" href="/general.css">
+</head>
+<body>
+    <div th:insert="~{header :: header}" style="display: flex; padding: 0 20px; border-bottom: solid 1px gray;"></div>
+    <h1 th:utext="${user}"></h1>
+    <a th:href="@{/todos/create/users/{owner_id}(owner_id=${owner_id})}" class="button">Create new ToDo List</a>
+    <table>
+        <tr>
+            <th>No.</th>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Created At</th>
+            <th>Owner</th>
+            <th colspan="2">Operations</th>
+        </tr>
+        <tr th:each ="todo,iterationStatus : ${todos}">
+            <th th:utext="${iterationStatus.count}">...</th>
+            <td th:utext="${todo.id}">...</td>
+            <td><a th:href="@{/todos/{todo_id}/tasks(todo_id=${todo.id})}" th:utext="${todo.title}"></a></td>
+            <td th:utext="${todo.createdAt.withNano(0)}">...</td>
+            <td th:utext="${todo.owner.firstName} + ' ' + ${todo.owner.lastName}">...</td>
+            <td><a th:href="@{/todos/{todo_id}/update/users/{owner_id}(todo_id=${todo.id}, owner_id=${owner_id})}">Edit</a></td>
+            <td><a th:href="@{/todos/{todo_id}/delete/users/{owner_id}(todo_id=${todo.id}, owner_id=${owner_id})}">Remove</a></td>
+        </tr>
+    </table>
+    <a th:href="@{/users/all}" class="button">Go to User list</a>
+</body>
+</html>

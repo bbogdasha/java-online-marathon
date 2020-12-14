@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update user</title>
+    <link rel="stylesheet" href="/general.css">
+</head>
+<body>
+<div th:insert="~{header :: header}" style="display: flex; padding: 0 20px; border-bottom: solid 1px gray;"></div>
+<h2>Update Existing User</h2>
+<form th:action="@{/users/edit/{id}(id=${user.getId()})}" th:object="${user}" th:method="post">
+    <table>
+
+        <tr>
+            <td>
+                <label for="name">First Name: </label>
+            </td>
+            <td>
+                <input type="text" th:field="*{firstName}" id="name"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="lastName">Last Name: </label>
+            </td>
+            <td>
+                <input type="text" th:field="*{lastName}" id="lastName"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="email">Email: </label>
+            </td>
+            <td>
+                <input type="email" th:field="*{email}" id="email"/>
+            </td>
+        </tr>
+        <!--            <tr>-->
+        <!--                <td>-->
+        <!--                    <label for="password">Old Password: </label>-->
+        <!--                </td>-->
+        <!--                <td>-->
+        <!--                    <input type="password" th:field="*{password}" id="password"/>-->
+        <!--                </td>-->
+        <!--            </tr>-->
+        <tr>
+            <td>
+                <label for="newpass">Password: </label>
+            </td>
+            <td>
+                <input type="password" th:field="*{password}" id="newpass"/>
+            </td>
+        </tr>
+
+        <div th:switch="${user.getRole().getName()}">
+            <p th:case="'ADMIN'">User is an administrator</p>
+            <p th:case="'USER'">User is a customer</p>
+            <p th:case="null">User has no role yet</p>
+        </div>
+        <tr>
+            <td>
+                <input type="submit" value="Update"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<<<<<<< HEAD
+<a th:href="@{/users/all}" class="button">Go to User list</a>
+=======
+<a th:href="@{/users/all}">
+    <button>Go to User list</button>
+</a>
+>>>>>>> 68da8819ab379d6c5566a59851ca1a3769b47994
+</body>
+</html>

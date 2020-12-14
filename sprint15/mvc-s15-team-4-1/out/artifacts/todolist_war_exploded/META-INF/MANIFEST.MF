@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: tsoy
+Build-Jdk: 11.0.7
+Implementation-Title: ToDoList
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.softserve.itacademy
+Main-Class: ${start-class}
+

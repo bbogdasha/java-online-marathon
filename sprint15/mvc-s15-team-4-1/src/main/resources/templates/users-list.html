@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Users</title>
+<<<<<<< HEAD
+    <link rel="stylesheet" href="/general.css">
+=======
+    <link rel="stylesheet" type="text/css" href="/static.style.css/style.css"/>
+>>>>>>> 68da8819ab379d6c5566a59851ca1a3769b47994
+</head>
+<body>
+    <div th:insert="~{header :: header}" style="display: flex; padding: 0 20px; border-bottom: solid 1px gray;"></div>
+    <div th:switch="${users}">
+        <h2 th:case="null">No users found</h2>
+        <div th:case="*">
+            <h2>List of Users</h2>
+            <a th:href="@{/users/create}" class="button">Create new User</a>
+            <table>
+                <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>ID</th>
+                    <th>Full name</th>
+                    <th>Email</th>
+                    <th colspan="3">Operations</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <th th:text="${userStat.index+1}"></th>
+                    <td th:text="${user.getId()}"></td>
+                    <td><a th:href="@{/todos/all/users/{user_id}(user_id=${user.getId()})}" th:text="${user.getFirstName()} + ' ' +  ${user.getLastName()}"></a></td>
+                    <td th:text="${user.getEmail()}"></td>
+                    <td>
+                        <a th:href="@{/users/update/{id}(id=${user.getId()})}">Edit</a>
+                    </td>
+                    <td>
+                        <a th:href="@{/users/delete/{id}(id=${user.getId()})}">Remove</a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

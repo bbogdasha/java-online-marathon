@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Tasks of ToDo List</title>
+</head>
+<body>
+    <div th:insert="~{header :: header}" style="display: flex; padding: 0 20px; border-bottom: solid 1px gray;"></div>
+    <h1 th:utext="${todo}"></h1>
+    <a th:href="@{/tasks/create/todos/{todo_id}(todo_id=${todo_id})}"><button>Create Task</button></a>
+    <table border="1">
+        <tr>
+            <th>No.</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Priority</th>
+            <th>State</th>
+            <th colspan="2">Operations</th>
+        </tr>
+        <tr th:each ="task,iterationStatus : ${tasks}">
+            <td th:utext="${iterationStatus.count}">...</td>
+            <td th:utext="${task.id}">...</td>
+            <td th:utext="${task.name}">...</td>
+            <td th:utext="${task.priority}">...</td>
+            <td th:utext="${task.state.name}">...</td>
+            <td><a th:href="@{/tasks/{task_id}/update/todos/{todo_id}(task_id=${task.id}, todo_id=${id})}">Edit</a></td>
+            <td><a th:href="@{/tasks/{task_id}/delete/todos/{todo_id}(task_id=${task.id}, todo_id=${id})}">Remove</a></td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <h1>Collaborators:</h1>
+    <form th:action="@{/todos/{id}/add(id=${id})}" th:object="${collaborator}" method="post">
+        <select id="notCollaborators" name="notCollaborators">
+            <option value="0">Select collaborator</option>
+            <option th:each="notCollaborator : ${notCollaborators}" th:utext="${notCollaborator.firstName} + ' ' + ${notCollaborator.lastName}"></option>
+        </select>
+        <input type="submit" value="Add">
+    </form>
+    <table border="1">
+        <tr th:each ="collaborator,iterationStatus : ${collaborators}">
+            <td th:utext="${iterationStatus.count}">...</td>
+            <td th:utext="${collaborator.firstName} + ' ' + ${collaborator.lastName}">...</td>
+<!--            <td><a th:href="@{/tasks/{task_id}/delete/todos/{todo_id}(task_id=${task.id}, todo_id=${id})}">Remove</a></td>-->
+        </tr>
+    </table>
+    <a th:href="@{/todos/all/users/{user_id}(user_id=${owner_id})}"><button>Go to ToDo list</button></a>
+</body>
+</html>
