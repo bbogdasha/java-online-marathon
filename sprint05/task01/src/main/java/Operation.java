@@ -1,13 +1,16 @@
 class Operation{
-    public static  int squareRectangle (int a, int b) {
-        if (a <= 0 || b <= 0)
-            throw new IllegalArgumentException("both arguments should be more than zero");
-        return a * b;
+
+    private final static String EXCEPTION = "both arguments should be more than zero";
+
+    public static  int squareRectangle (int length, int width) {
+        if (length <= 0 || width <= 0)
+            throw new IllegalArgumentException(EXCEPTION);
+        return length * width;
     }
 
-    public static int trySquareRectangle(int a, int b) {
+    public static int trySquareRectangle(int length, int width) {
         try {
-            return squareRectangle(a, b);
+            return squareRectangle(length, width);
         } catch (IllegalArgumentException e) {
             return -1;
         }
