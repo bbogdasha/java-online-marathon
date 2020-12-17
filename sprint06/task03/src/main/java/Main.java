@@ -11,5 +11,6 @@ public class Main {
         people.add(new Person("Emmy", "Emmyla"));
 
         System.out.println(App.createGreetings(people, App.greetingOperator));
+        System.out.println(App.createGreetingsStream(people, App.greetingOperator));
     }
 }

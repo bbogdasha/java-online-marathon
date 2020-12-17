@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BinaryOperator;
+import java.util.stream.Collectors;
 
 public class App {
 
@@ -14,5 +15,12 @@ public class App {
             result.add(binaryOperator.apply(p.name, p.surname));
         }
         return result;
+    }
+
+    //The shortest solution
+    public static List<String> createGreetingsStream(List<Person> people, BinaryOperator<String> binaryOperator) {
+        return people.stream()
+                .map(person -> binaryOperator.apply(person.name, person.surname))
+                .collect(Collectors.toList());
     }
 }

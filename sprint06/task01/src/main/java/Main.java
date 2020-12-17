@@ -9,5 +9,6 @@ public class Main {
         int[] array = {3, 5, 6, -4, -2, -1, 7};
 
         System.out.println(MyUtils.getCount(array, predicate));
+        System.out.println(MyUtils.getCountStream(array, predicate));
     }
 }

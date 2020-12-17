@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 public class MyUtils {
@@ -10,5 +11,10 @@ public class MyUtils {
                 count += 1;
         }
         return count;
+    }
+
+    //The shortest solutions
+    public static int getCountStream(int[] array, Predicate<Integer> predicate) {
+        return (int) Arrays.stream(array).filter(predicate::test).count();
     }
 }
