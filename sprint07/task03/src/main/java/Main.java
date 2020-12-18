@@ -1,4 +1,4 @@
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class Main {
@@ -8,20 +8,14 @@ public class Main {
     }
 
     public static void writeFile(String filename, String text) {
-
-        StringBuilder toBytes = new StringBuilder();
-        StringBuilder temp;
-
-        for(int i = 0; i < text.length(); i++) {
-            temp = new StringBuilder(Integer.toBinaryString(text.charAt(i)));
-            for(int j = temp.length(); j < 7; j++) {
-                temp.insert(0, "0");
-            }
-            toBytes.append(temp);
+        byte[] bytes = text.getBytes();
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+            sb.append(String.format("%7s", Integer.toBinaryString(b)));
         }
-
-        try (FileWriter fw = new FileWriter(filename)) {
-            fw.write(String.valueOf(toBytes));
+        String str = sb.toString().replace(" ", "0");
+        try (FileOutputStream writer = new FileOutputStream(filename)) {
+            writer.write(str.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }

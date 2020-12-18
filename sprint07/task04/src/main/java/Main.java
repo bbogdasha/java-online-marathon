@@ -8,25 +8,16 @@ public class Main {
     }
 
     public static String readFile(String filename) {
-
-        StringBuilder binaryString = new StringBuilder();
-
-        try (FileReader fr = new FileReader(filename)) {
-            int singleCharInt;
-            char singleChar;
-            while((singleCharInt = fr.read()) != -1) {
-                singleChar = (char) singleCharInt;
-                binaryString.append(singleChar);
+        StringBuilder sb = new StringBuilder();
+        char[] symbols;
+        try (FileReader fileReader = new FileReader(filename)) {
+            symbols = new char[7];
+            while (fileReader.read(symbols, 0, 7) != -1) {
+                sb.append((char) Integer.parseInt(String.valueOf(symbols), 2));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        String[] binarySymbols = binaryString.toString().split("(?<=\\G.{7})");
-        StringBuilder word = new StringBuilder();
-        for (String s : binarySymbols) {
-            word.append((char) Integer.parseInt(s, 2));
-        }
-        return word.toString();
+        return sb.toString();
     }
 }
