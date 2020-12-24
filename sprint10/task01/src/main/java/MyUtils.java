@@ -7,24 +7,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyUtils {
+
     private Connection connection;
     private Statement statement;
     private String schemaName;
 
+    private static final String JDBC_URL = "jdbc:h2:mem:test";
+    private static final String JDBC_USER = "sa";
+    private static final String JDBC_PASSWORD = "";
+
     public Connection createConnection() throws SQLException {
         DriverManager.registerDriver(new org.h2.Driver());
-        connection = DriverManager.getConnection("jdbc:h2:mem:test", "sa", "");
+        connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
         return connection;
     }
     public void closeConnection() throws SQLException {
-        connection.close();
+        if (connection != null) {
+            connection.close();
+        }
     }
     public Statement createStatement() throws SQLException {
         statement = connection.createStatement();
         return statement;
     }
     public void closeStatement() throws SQLException {
-        statement.close();
+        if (statement != null) {
+            statement.close();
+        }
     }
     public void createSchema(String schemaName) throws SQLException {
         this.schemaName = schemaName;
