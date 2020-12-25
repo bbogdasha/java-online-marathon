@@ -14,9 +14,10 @@
 * Sprint 10. JDBC.
 * Sprint 11. Servlets.
 * Sprint 12. Introduction To Spring. IoC.
-* Sprint 13. ORM. Hibernate with Spring.
-* Sprint 14. Spring MVC.
-* Sprint 15. Unit testing. Logging.
-* Sprint 16. Spring. Exception handling.
-* Sprint 17. Spring Security.
-* Sprint 18. Rest API Serialization. JSON.
+* Sprint 13. ORM. Hibernate with Spring. Part 1.
+* Sprint 14. ORM. Hibernate with Spring. Part 2.
+* Sprint 15. Spring MVC.
+* Sprint 16. Unit testing. Logging.
+* Sprint 17. Spring. Exception handling.
+* Sprint 18. Spring Security.
+* Sprint 19. Rest API Serialization. JSON.
