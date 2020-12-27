@@ -23,9 +23,19 @@
                 <td><label for="priority">Priority:</label></td>
                 <td>
                     <select name="priority" id="priority">
-                        <c:forEach items="<%=Priority.values()%>" var="entry">
-                            <option>${entry.name()}</option>
-                        </c:forEach>
+                    <%
+                        for(Priority priority : Priority.values()) {
+                            if(priority.name().equals(task.getPriority().name())) {
+                    %>
+                    <option selected><%priority.name().charAt(0) + priority.name().substring(1).toLowerCase()%></option>
+                    <%
+                            } else {
+                    %>
+                    <option><%priority.name().charAt(0) + priority.name().substring(1).toLowerCase()%></option>
+                    <%
+                            }
+                        }
+                    %>
                     </select>
                 </td>
             </tr>

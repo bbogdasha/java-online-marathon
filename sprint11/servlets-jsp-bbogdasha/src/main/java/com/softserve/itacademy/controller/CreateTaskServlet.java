@@ -26,25 +26,20 @@ public class CreateTaskServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        boolean checkDuplicate = true;
+
         String title = request.getParameter("title");
         Priority priority = Priority.valueOf(request.getParameter("priority"));
-        if (taskRepository.all().isEmpty()) {
-            Task task = new Task(title, priority);
-            taskRepository.create(task);
+
+        Task task = new Task(title, priority);
+        boolean isCreated = taskRepository.create(task);
+
+        if (isCreated) {
+            response.sendRedirect(request.getContextPath() + "/tasks-list");
         } else {
-            for (Task t : taskRepository.all()) {
-                if (t.getTitle().equals(title)) {
-                    checkDuplicate = false;
-                    request.setAttribute("message", "Task with a given name already exists!");
-                    request.getRequestDispatcher("/WEB-INF/pages/create-task.jsp").forward(request, response);
-                }
-            }
-            if (checkDuplicate) {
-                Task task = new Task(title, priority);
-                taskRepository.create(task);
-            }
+            request.setAttribute("message", "Task with a given name already exists!");
+            request.setAttribute("priorities", Priority.values());
+            request.getRequestDispatcher("/WEB-INF/pages/create-task.jsp").forward(request, response);
         }
-        response.sendRedirect("/tasks-list");
+
     }
 }
