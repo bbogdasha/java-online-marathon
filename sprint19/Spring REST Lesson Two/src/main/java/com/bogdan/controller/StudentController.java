@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class StudentController {
@@ -49,7 +50,7 @@ public class StudentController {
     }
 
     @GetMapping(value = "/students/{studentId}/courses")
-    public List<Course> read(@PathVariable int studentId) {
+    public Set<Course> read(@PathVariable int studentId) {
         return studentService.getAllCoursesStudent(studentId);
     }
 }

@@ -5,9 +5,18 @@ import java.util.Objects;
 
 public class Course {
 
+    private int id;
     private String name;
     private String info;
     private List<String> steps;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -38,13 +47,14 @@ public class Course {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Course course = (Course) o;
-        return name.equals(course.name) &&
+        return id == course.id &&
+                name.equals(course.name) &&
                 info.equals(course.info) &&
                 steps.equals(course.steps);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, info, steps);
+        return Objects.hash(id, name, info, steps);
     }
 }

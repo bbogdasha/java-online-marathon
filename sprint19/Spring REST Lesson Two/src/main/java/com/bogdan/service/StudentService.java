@@ -4,6 +4,7 @@ import com.bogdan.model.Course;
 import com.bogdan.model.Student;
 
 import java.util.List;
+import java.util.Set;
 
 public interface StudentService {
 
@@ -15,7 +16,7 @@ public interface StudentService {
 
     void addCourse(int studentId, Course course);
 
-    List<Course> getAllCoursesStudent(int studentId);
+    Set<Course> getAllCoursesStudent(int studentId);
 
     List<Course> getAllCourses();
 }

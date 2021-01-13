@@ -1,13 +1,13 @@
 package com.bogdan.model;
 
-import java.util.List;
+import java.util.Set;
 
 public class Student {
 
     private int id;
     private String name;
     private String info;
-    private List<Course> courses;
+    private Set<Course> courses;
 
     public int getId() {
         return id;
@@ -33,11 +33,11 @@ public class Student {
         this.info = info;
     }
 
-    public List<Course> getCourses() {
+    public Set<Course> getCourses() {
         return courses;
     }
 
-    public void setCourses(List<Course> courses) {
+    public void setCourses(Set<Course> courses) {
         this.courses = courses;
     }
 }
