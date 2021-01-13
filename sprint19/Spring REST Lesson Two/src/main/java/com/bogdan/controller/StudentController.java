@@ -21,25 +21,26 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping(value = "/students")
-    public List<Student> readAllStudents() {
-        return studentService.getAllStudents();
-    }
-
     @PostMapping(value = "/students/add")
     public ResponseEntity<?> create(@RequestBody Student student) {
         studentService.addStudent(student);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/students/{studentId}")
-    public Student readStudent(@PathVariable int studentId) {
-        return studentService.getStudent(studentId);
+    @GetMapping(value = "/students")
+    public ResponseEntity<List<Student>> readAllStudents() {
+        List<Student> students = studentService.getAllStudents();
+        return students != null && !students.isEmpty()
+                ? new ResponseEntity<>(students, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/courses")
-    public List<Course> readAllCourses() {
-        return studentService.getAllCourses();
+    @GetMapping(value = "/students/{studentId}")
+    public ResponseEntity<Student> readStudent(@PathVariable int studentId) {
+        Student student = studentService.getStudent(studentId);
+        return student != null
+                ? new ResponseEntity<>(student, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping(value = "/students/{studentId}/courses/add")
@@ -49,8 +50,19 @@ public class StudentController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @GetMapping(value = "/courses")
+    public ResponseEntity<List<Course>> readAllCourses() {
+        List<Course> courses = studentService.getAllCourses();
+        return courses != null && !courses.isEmpty()
+                ? new ResponseEntity<>(courses, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     @GetMapping(value = "/students/{studentId}/courses")
-    public Set<Course> read(@PathVariable int studentId) {
-        return studentService.getAllCoursesStudent(studentId);
+    public ResponseEntity<Set<Course>> read(@PathVariable int studentId) {
+        Set<Course> courses = studentService.getAllCoursesStudent(studentId);
+        return courses != null && !courses.isEmpty()
+                ? new ResponseEntity<>(courses, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
