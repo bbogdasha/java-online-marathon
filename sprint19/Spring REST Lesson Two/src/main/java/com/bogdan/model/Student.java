@@ -9,6 +9,12 @@ public class Student {
     private String info;
     private Set<Course> courses;
 
+    public Student(String name, String info, Set<Course> courses) {
+        this.name = name;
+        this.info = info;
+        this.courses = courses;
+    }
+
     public int getId() {
         return id;
     }

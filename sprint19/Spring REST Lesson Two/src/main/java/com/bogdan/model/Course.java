@@ -10,6 +10,12 @@ public class Course {
     private String info;
     private List<String> steps;
 
+    public Course(String name, String info, List<String> steps) {
+        this.name = name;
+        this.info = info;
+        this.steps = steps;
+    }
+
     public int getId() {
         return id;
     }
