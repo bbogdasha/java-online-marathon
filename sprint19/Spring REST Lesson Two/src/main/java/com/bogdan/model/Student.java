@@ -9,7 +9,8 @@ public class Student {
     private String info;
     private Set<Course> courses;
 
-    public Student(String name, String info, Set<Course> courses) {
+    public Student(int id, String name, String info, Set<Course> courses) {
+        this.id = id;
         this.name = name;
         this.info = info;
         this.courses = courses;

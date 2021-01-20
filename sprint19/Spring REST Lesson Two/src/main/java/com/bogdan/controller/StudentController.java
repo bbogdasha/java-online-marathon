@@ -22,9 +22,9 @@ public class StudentController {
     }
 
     @PostMapping(value = "/students/add")
-    public ResponseEntity<?> create(@RequestBody Student student) {
+    public ResponseEntity<Student> create(@RequestBody Student student) {
         studentService.addStudent(student);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<Student>(student, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/students")
