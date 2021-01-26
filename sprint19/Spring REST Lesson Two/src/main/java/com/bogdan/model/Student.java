@@ -1,18 +1,20 @@
 package com.bogdan.model;
 
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Student {
 
+    private static final AtomicInteger counter = new AtomicInteger();
     private int id;
     private String name;
-    private String info;
+    private String surname;
     private Set<Course> courses;
 
-    public Student(int id, String name, String info, Set<Course> courses) {
-        this.id = id;
+    public Student(String name, String surname, Set<Course> courses) {
+        this.id = counter.incrementAndGet();
         this.name = name;
-        this.info = info;
+        this.surname = surname;
         this.courses = courses;
     }
 
@@ -32,12 +34,12 @@ public class Student {
         this.name = name;
     }
 
-    public String getInfo() {
-        return info;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public Set<Course> getCourses() {

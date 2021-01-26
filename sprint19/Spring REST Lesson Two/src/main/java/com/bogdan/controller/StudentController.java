@@ -24,7 +24,7 @@ public class StudentController {
     @PostMapping(value = "/students/add")
     public ResponseEntity<Student> create(@RequestBody Student student) {
         studentService.addStudent(student);
-        return new ResponseEntity<Student>(student, HttpStatus.CREATED);
+        return new ResponseEntity<>(student, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/students")
@@ -36,7 +36,7 @@ public class StudentController {
     }
 
     @GetMapping(value = "/students/{studentId}")
-    public ResponseEntity<Student> readStudent(@PathVariable int studentId) {
+    public ResponseEntity<Student> readStudent(@PathVariable("studentId") int studentId) {
         Student student = studentService.getStudent(studentId);
         return student != null
                 ? new ResponseEntity<>(student, HttpStatus.OK)

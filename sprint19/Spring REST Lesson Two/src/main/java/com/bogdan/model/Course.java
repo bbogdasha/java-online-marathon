@@ -2,15 +2,18 @@ package com.bogdan.model;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Course {
 
+    private static final AtomicInteger counter = new AtomicInteger();
     private int id;
     private String name;
     private String info;
     private List<String> steps;
 
     public Course(String name, String info, List<String> steps) {
+        this.id = counter.incrementAndGet();
         this.name = name;
         this.info = info;
         this.steps = steps;

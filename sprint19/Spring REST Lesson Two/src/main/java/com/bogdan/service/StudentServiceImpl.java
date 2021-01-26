@@ -2,6 +2,7 @@ package com.bogdan.service;
 
 import com.bogdan.model.Course;
 import com.bogdan.model.Student;
+import com.bogdan.repository.StudentDB;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -10,23 +11,32 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 public class StudentServiceImpl implements StudentService {
 
-    private static final Map<Integer, Student> STUDENT_REPOSITORY = new HashMap<>();
+    private static final List<Student> STUDENT_REPOSITORY = new ArrayList<>();
     private static final Map<Integer, Course> COURSE_REPOSITORY = new HashMap<>();
-    private static final AtomicInteger STUDENT_ID = new AtomicInteger();
     private static final AtomicInteger COURSE_ID = new AtomicInteger();
+
+    static {
+        STUDENT_REPOSITORY.addAll(StudentDB.getStudentList());
+
+        for (Student s : STUDENT_REPOSITORY) {
+            for (Course c : s.getCourses()) {
+                int index = COURSE_ID.incrementAndGet();
+                c.setId(index);
+                COURSE_REPOSITORY.put(index, c);
+            }
+        }
+    }
 
     @Override
     public void addStudent(Student student) {
-        final int studentId = STUDENT_ID.incrementAndGet();
-        student.setId(studentId);
-        STUDENT_REPOSITORY.put(studentId, student);
+        STUDENT_REPOSITORY.add(student);
     }
 
     @Override
     public Student getStudent(int id) {
-        for (Student student : STUDENT_REPOSITORY.values()) {
-            if (student.getId() == id) {
-                return STUDENT_REPOSITORY.get(id);
+        for (Student s : STUDENT_REPOSITORY) {
+            if (s.getId() == id) {
+                return STUDENT_REPOSITORY.get(id - 1);
             }
         }
         return null;
@@ -34,7 +44,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> getAllStudents() {
-        return new ArrayList<>(STUDENT_REPOSITORY.values());
+        return STUDENT_REPOSITORY;
     }
 
     @Override
@@ -45,10 +55,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Set<Course> getAllCoursesStudent(int studentId) {
         Student student = getStudent(studentId);
-        if (student == null) {
-            return null;
+        if (student != null) {
+            return student.getCourses();
         }
-        return student.getCourses();
+        return null;
     }
 
     @Override
