@@ -2,7 +2,7 @@ package com.bogdan.service;
 
 import com.bogdan.model.Course;
 import com.bogdan.model.Student;
-import com.bogdan.repository.StudentDB;
+import com.bogdan.repository.StudentDao;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -13,12 +13,12 @@ public class StudentServiceImpl implements StudentService {
 
     private static final List<Student> STUDENT_REPOSITORY = new ArrayList<>();
     private static final Map<Integer, Course> COURSE_REPOSITORY = new HashMap<>();
+
     private static final AtomicInteger COURSE_ID = new AtomicInteger();
 
     static {
-        STUDENT_REPOSITORY.addAll(StudentDB.getStudentList());
-
-        for (Student s : STUDENT_REPOSITORY) {
+        for (Student s : StudentDao.getStudentList()) {
+            STUDENT_REPOSITORY.add(s);
             for (Course c : s.getCourses()) {
                 int index = COURSE_ID.incrementAndGet();
                 c.setId(index);
