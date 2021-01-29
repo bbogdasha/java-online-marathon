@@ -54,7 +54,7 @@ public class StudentControllerTest {
 
     @Test
     public void addStudentTest() throws Exception {
-        String exampleStudentJson = "{\"id\":\"1\",\"name\":\"Bob\",\"surname\":\"Bob info\",\"courses\":[]}";
+        String exampleStudentJson = "{\"id\":\"1\",\"name\":\"Bob\",\"surname\":\"Black\",\"courses\":[]}";
         mockMvc.perform(MockMvcRequestBuilders
                 .post("/students/add")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -65,7 +65,7 @@ public class StudentControllerTest {
 
     @Test
     public void getStudentByIdTest() throws Exception {
-        Student student = new Student(1, "Bobby", "Bobby info", new HashSet<>());
+        Student student = new Student(1, "Bobby", "Red", new HashSet<>());
         Mockito.when(studentService.getStudent(1)).thenReturn(student);
         mockMvc.perform( MockMvcRequestBuilders
                 .get("/students/{studentId}", 1)
@@ -73,7 +73,7 @@ public class StudentControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Bobby"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.surname").value("Bobby info"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.surname").value("Red"))
                 .andDo(print());
     }
 
@@ -107,8 +107,10 @@ public class StudentControllerTest {
                 .get("/students/{studentId}/courses", 1))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[0].id").value(1))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.[0].name").value("Cyber"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.[0].info").value("Security info"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.[0].name").value("Cyber security"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.[0].info").value("Cyber security is the practice of \" +\n" +
+                        "                \"defending computers, servers, mobile devices, electronic systems, networks, and \" +\n" +
+                        "                \"data from malicious attacks."))
                 .andDo(print());
     }
 }
