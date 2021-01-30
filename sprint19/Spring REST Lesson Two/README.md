@@ -6,7 +6,7 @@ The second part implements unit testing on Controller Layer using Mokito.
 
 ---
 
-**1. /students**
+**1. GET: /students**
 
 Lists all registered students with the courses they are enrolled in. Recurring courses have one id:
 
@@ -73,7 +73,7 @@ Lists all registered students with the courses they are enrolled in. Recurring c
 
 ---
 
-**2. /courses**
+**2. GET: /courses**
 
 List of all courses without repetitions:
 
@@ -110,7 +110,7 @@ List of all courses without repetitions:
 
 ---
 
-**3. /students/{studentId}**
+**3. GET: /students/{studentId}**
 
 Get information about the student and his courses by his ID, get student by id 3:
 
@@ -142,7 +142,7 @@ Get information about the student and his courses by his ID, get student by id 3
 
 ---
 
-**3. /students/{studentId}/courses**
+**3. GET: /students/{studentId}/courses**
 
 Get information about student courses only, get student by 3 id:
 
@@ -168,9 +168,9 @@ Get information about student courses only, get student by 3 id:
 ```
 ---
 
-**4. /students/add**
+**4. POST: /students/add**
 
-**5. /students/{studentId}/courses/add**
+**5. POST: /students/{studentId}/courses/add**
 
 And the ability to add a student or course to a specific student by his ID, sends in the format JSON.
 
